@@ -1,0 +1,255 @@
+/* ==========================================================================
+   Maximilian Grimm — personal site
+   Aesthetic: warm minimal scholarly, all-serif, narrow measure
+   ========================================================================== */
+
+:root {
+  --paper:   #fbfaf6;   /* warm off-white background */
+  --ink:     #1c1917;   /* near-black text */
+  --muted:   #6b6259;   /* secondary text, metadata */
+  --rule:    #e7e2d6;   /* warm light dividers */
+  --accent:  #8c2718;   /* deep oxblood for links */
+  --accent-hover: #5a1810;
+
+  --measure: 38rem;     /* content column width */
+  --pad-x:   1.5rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 18px;       /* slightly larger base; readable for body text */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 3rem var(--pad-x) 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1rem;
+}
+
+.brand {
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.4rem;
+  font-size: 1rem;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.site-header nav a:hover {
+  color: var(--accent);
+}
+
+.site-header nav a.active {
+  color: var(--ink);
+}
+.site-header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.site-header nav .scholar-icon {
+  height: 1.1em;
+  width: auto;
+  vertical-align: -0.2em;
+  filter: grayscale(1);
+  transition: opacity 120ms ease;
+}
+.site-header nav a:hover .scholar-icon { opacity: 0.7; }
+
+.site-header nav .email-icon svg {
+  width: 1.05em;
+  height: 1.05em;
+  vertical-align: -0.2em;
+}
+
+/* ==========================================================================
+   Main
+   ========================================================================== */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 3rem var(--pad-x) 4rem;
+}
+
+main p { margin: 0 0 1rem; }
+
+main a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(140, 39, 24, 0.3);
+  transition: border-color 120ms ease, color 120ms ease;
+}
+main a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+/* Section headings on research page */
+h2.section {
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+h2.section:first-child { margin-top: 0; }
+
+/* ==========================================================================
+   Landing page intro
+   ========================================================================== */
+
+.intro {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  filter: saturate(0.95);
+}
+
+.bio p {
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.bio p:first-child { margin-top: -0.3rem; }
+
+@media (max-width: 600px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .portrait { max-width: 180px; }
+}
+
+/* ==========================================================================
+   Papers
+   ========================================================================== */
+
+.paper {
+  margin-bottom: 2rem;
+}
+
+.paper h3 {
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.paper .authors {
+  font-style: italic;
+  color: var(--muted);
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.paper .venue {
+  font-size: 0.98rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.paper details {
+  margin-top: 0.6rem;
+}
+
+.paper summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-style: italic;
+  display: inline-block;
+  list-style: none;
+  user-select: none;
+}
+.paper summary::-webkit-details-marker { display: none; }
+.paper summary::before {
+  content: "▸ ";
+  display: inline-block;
+  transition: transform 150ms ease;
+}
+.paper details[open] summary::before {
+  content: "▾ ";
+}
+.paper summary:hover { color: var(--accent-hover); }
+
+.paper details > p {
+  margin: 0.5rem 0 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--rule);
+  color: #3a342e;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 1.5rem var(--pad-x) 3rem;
+  border-top: 1px solid var(--rule);
+}
+
+.site-footer p {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}

@@ -1,0 +1,26 @@
+# Ignore Latex aux files:
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.log
+*.synctex.gz
+*synctex
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.toc
+*.nav
+*.snm
+*.ent
+*.tdo
+*.lof
+*.lot
+*.ptc
+
+# Ignore the vscode folder
+.vscode
+
+# Ignore the git folder
+.git
