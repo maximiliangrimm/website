@@ -41,17 +41,22 @@ If asked to "modernize" or "make it pop" — push back. The owner picked this ae
 
 ```
 site/
-├── index.html          # landing page (intro paragraph + photo)
-├── research.html       # papers organized into Publications / Working Papers / Work in Progress
-├── style.css           # all styling, ~200 lines, well-commented section headers
-├── CNAME               # single line: maximiliangrimm.com — required by GitHub Pages
+├── index.html             # landing page (intro paragraph + photo)
+├── research.html          # papers organized into Publications / Working Papers / Work in Progress
+├── style.css              # all styling, well-commented section headers
+├── CNAME                  # single line: maximiliangrimm.com — required by GitHub Pages
+├── .nojekyll              # empty file — disables Jekyll so CLAUDE.md and other .md files aren't served as public pages
+├── .gitignore             # ignores LaTeX build artifacts and editor folders
 └── assets/
-    ├── profile.jpg     # portrait
-    ├── CV.pdf          # current CV
-    └── favicon.png     # 512×512 PNG
+    ├── profile.jpg        # portrait
+    ├── CV.tex             # CV source — edit this, then recompile to refresh CV.pdf
+    ├── CV.pdf             # compiled CV (the file the site actually links to)
+    ├── res.cls            # LaTeX class file required by CV.tex (do not delete)
+    ├── favicon.png        # 512×512 PNG
+    └── googlescholar.png  # nav icon (rendered grayscale via a CSS filter)
 ```
 
-The two HTML files share an identical `<header>` and `<footer>` block. If the nav or footer changes, both files must be updated together. (Future option: a static-site generator would deduplicate this, but the owner has explicitly chosen not to use one.)
+The two HTML files share an identical `<header>` and `<footer>` block. If the nav or footer changes, both files must be updated together. The current nav, in order, is: `Home · Research · CV · ✉ (inline SVG envelope) · Scholar (PNG icon)`. (Future option: a static-site generator would deduplicate the shared header/footer, but the owner has explicitly chosen not to use one.)
 
 ## Common edit recipes
 
@@ -62,7 +67,11 @@ Copy an existing `<article class="paper">` block and paste it into the correct s
 ```html
 <article class="paper">
   <h3>Title of the paper</h3>
-  <p class="authors">with Coauthor A and Coauthor B</p>
+  <p class="authors">
+    with
+    <a href="https://coauthor-a.example/">Coauthor A</a> and
+    <a href="https://coauthor-b.example/">Coauthor B</a>
+  </p>
   <p class="venue">
     Status / venue.
     &nbsp;·&nbsp; <a href="#">PDF</a>
@@ -76,9 +85,14 @@ Copy an existing `<article class="paper">` block and paste it into the correct s
 </article>
 ```
 
-For sole-authored papers, use `<p class="authors">Sole-authored</p>`. For published papers, the `venue` line uses italics: `<em>Journal Name</em>, Vol. X(Y), 20XX, pp. XX–XX.` Use an en-dash (`–`), not a hyphen, in page ranges.
+Conventions used throughout the site:
 
-The three section headings (`<h2 class="section">`) are: **Publications**, **Working Papers**, **Work in Progress**. Keep them in that order — most-credentialed first.
+- **Coauthor names are hyperlinks** to their personal websites, listed alphabetically by last name. If a coauthor has no website, leave their name as plain text.
+- **Sole-authored papers**: omit the `<p class="authors">` element entirely. Do not write "Sole-authored".
+- **Do not repeat the section status in the venue line.** No "Working paper." inside the Working Papers section; no "Work in progress." inside the Work in Progress section — the heading already conveys it.
+- **Published papers**: the venue line uses italics: `<em>Journal Name</em>, Vol. X(Y), 20XX, pp. XX–XX.` Use an en-dash (`–`), not a hyphen, in page ranges.
+
+The three section headings (`<h2 class="section">`) are: **Publications**, **Working Papers**, **Work in Progress**. Keep them in that order — most-credentialed first. Within each section, also list most-credentialed first.
 
 ### Updating the bio on `index.html`
 
@@ -86,7 +100,19 @@ The `<div class="bio">` contains three short paragraphs. Keep paragraphs short a
 
 ### Updating CV or photo
 
-Replace the file in `assets/`. Filenames must stay as `CV.pdf` and `profile.jpg` unless the owner asks to rename them — the HTML hardcodes these paths.
+**CV**: edit `assets/CV.tex`, then recompile:
+
+```bash
+cd assets && pdflatex CV.tex
+```
+
+This regenerates `assets/CV.pdf` — the file the site actually serves. The class file `assets/res.cls` is required (referenced by `\documentclass{res}` in `CV.tex`); do not delete it. LaTeX build artifacts (`.aux`, `.log`, `.fls`, `.fdb_latexmk`, `.synctex.gz`) are gitignored. Always recompile before pushing, or the website's CV link will serve a stale PDF.
+
+**Photo**: replace `assets/profile.jpg`. Filenames must stay as `CV.pdf` and `profile.jpg` — the HTML hardcodes these paths.
+
+### When the title, description, or portrait changes
+
+The `<head>` of each HTML file contains a block of Open Graph and Twitter Card meta tags used by Bluesky, Twitter, LinkedIn, Slack, and iMessage to render link previews. If the page title, the meta description, or the portrait changes, update the corresponding `og:title`, `og:description`, `og:image`, and `og:url` lines on each affected page — otherwise link previews will go stale.
 
 ## Local preview
 
@@ -121,7 +147,7 @@ When the owner asks "should I add X?" the answer is usually no. The following ha
 |---|---|
 | Blog / news / talks page | Adds maintenance burden; empty sections signal a junior researcher. Add only when there's real content. |
 | Teaching page | The owner is a research economist at the Fed, not in a teaching role. |
-| Twitter / X / LinkedIn icons in nav | Optional, but not currently a fit for the tone. SSRN and Google Scholar are the academically relevant ones — add those first if asked. |
+| Twitter / X / LinkedIn icons in nav | No. The Google Scholar icon was added at the owner's request and is the only profile-link icon in the nav. SSRN is the remaining academically-relevant option if ever wanted; everything else stays out. |
 | Dark mode toggle | Off-white paper aesthetic is intentional. A dark mode would require redesigning the palette and adds complexity. |
 | Analytics | If asked, suggest Plausible or GoatCounter (privacy-respecting). Avoid Google Analytics on a personal academic site. |
 | Newsletter / RSS / comments | No. |
