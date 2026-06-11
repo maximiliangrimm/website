@@ -1,15 +1,15 @@
 /* ==========================================================================
    Maximilian Grimm — personal site
-   Aesthetic: warm minimal scholarly, all-serif, narrow measure
+   Aesthetic: parchment scholarly, all-serif, narrow measure
    ========================================================================== */
 
 :root {
-  --paper:   #fbfaf6;   /* warm off-white background */
-  --ink:     #1c1917;   /* near-black text */
-  --muted:   #6b6259;   /* secondary text, metadata */
-  --rule:    #e7e2d6;   /* warm light dividers */
-  --accent:  #8c2718;   /* deep oxblood for links */
-  --accent-hover: #5a1810;
+  --paper:   #f9f5ea;   /* parchment background (yellow-leaning, not cream) */
+  --ink:     #21201a;   /* near-black text, slight olive cast */
+  --muted:   #6c6754;   /* secondary text, metadata (olive-taupe) */
+  --rule:    #e6e0cd;   /* aged-paper dividers */
+  --accent:  #1f4e79;   /* Prussian navy for links */
+  --accent-hover: #143a5e;
 
   --measure: 38rem;     /* content column width */
   --pad-x:   1.5rem;
@@ -117,7 +117,7 @@ main p { margin: 0 0 1rem; }
 main a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid rgba(140, 39, 24, 0.3);
+  border-bottom: 1px solid rgba(31, 78, 121, 0.3);
   transition: border-color 120ms ease, color 120ms ease;
 }
 main a:hover {
@@ -230,7 +230,7 @@ h2.section:first-child { margin-top: 0; }
   margin: 0.5rem 0 0;
   padding-left: 0.9rem;
   border-left: 2px solid var(--rule);
-  color: #3a342e;
+  color: #3d392b;
   font-size: 1rem;
   line-height: 1.55;
 }

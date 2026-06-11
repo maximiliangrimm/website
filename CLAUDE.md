@@ -23,12 +23,12 @@ Refined academic minimalism. Reference points: Benjamin Moll, Atif Mian, Jón St
 
 | Token | Value | Use |
 |---|---|---|
-| `--paper` | `#fbfaf6` | Background (warm off-white, like aged paper) |
-| `--ink` | `#1c1917` | Primary text |
-| `--muted` | `#6b6259` | Secondary text, metadata, author lists |
-| `--rule` | `#e7e2d6` | Dividers, borders |
-| `--accent` | `#8c2718` | Links (deep oxblood) |
-| `--accent-hover` | `#5a1810` | Link hover |
+| `--paper` | `#f9f5ea` | Background (parchment — yellow-leaning, deliberately not Claude-cream) |
+| `--ink` | `#21201a` | Primary text |
+| `--muted` | `#6c6754` | Secondary text, metadata, author lists |
+| `--rule` | `#e6e0cd` | Dividers, borders |
+| `--accent` | `#1f4e79` | Links (Prussian navy) |
+| `--accent-hover` | `#143a5e` | Link hover |
 | `--measure` | `38rem` | Single column max-width |
 
 **Typography:** EB Garamond throughout, loaded from Google Fonts. Weight 400 for body, 500–600 for emphasis. Base font size is 18px (set on `html`). Line-height 1.6. Italic for venue names and the disclaimer.
@@ -148,7 +148,7 @@ When the owner asks "should I add X?" the answer is usually no. The following ha
 | Blog / news / talks page | Adds maintenance burden; empty sections signal a junior researcher. Add only when there's real content. |
 | Teaching page | The owner is a research economist at the Fed, not in a teaching role. |
 | Twitter / X / LinkedIn icons in nav | No. The Google Scholar icon was added at the owner's request and is the only profile-link icon in the nav. SSRN is the remaining academically-relevant option if ever wanted; everything else stays out. |
-| Dark mode toggle | Off-white paper aesthetic is intentional. A dark mode would require redesigning the palette and adds complexity. |
+| Dark mode toggle | Parchment aesthetic is intentional. A dark mode would require redesigning the palette and adds complexity. |
 | Analytics | If asked, suggest Plausible or GoatCounter (privacy-respecting). Avoid Google Analytics on a personal academic site. |
 | Newsletter / RSS / comments | No. |
 | A homepage hero image, background pattern, or banner | No. The portrait is the only image on the homepage. |
